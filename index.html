@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="textApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,12 +16,71 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+    .clear {
+      clear: both;
+    }
+    ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+    .text {
+      border: 1px solid #e0e0e0;
+      padding: 10px;
+      height: 400px;
+      overflow: -moz-scrollbars-vertical; 
+overflow-y: scroll;
+    }
+
+    div.chunkPair {
+      clear: both;
+      cursor: pointer;
+
+      margin-bottom: 10px;
+    }
+
+    div.chunkPair:hover div.chunk {
+      cursor: pointer;
+      border: 1px solid green;
+    }
+
+    div.chunkPair.selected div.chunk {
+      background: lightgreen;
+      border: 1px solid green;
+      color: #000;
+    }
+    div.chunk {
+      background: whitesmoke;
+      width: 49.5%;
+      padding: 5px;
+      float:left;
+      border: 1px solid #e0e0e0;
+      color: #555;
+    }
+    div.chunk.left {
+      margin-right: 0.5%;
+    }
+    div.chunk.right {
+      margin-left: 0.5%;
+    }
+    </style>
+
   </head>
 
   <body>
@@ -49,21 +108,28 @@
 
     <div class="container">
 
-      <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+      <div class="starter-template" ng-controller="chunkController">
+        <h4>Chunks of text</h4>
+        <div class="text">
+          <div class="chunkPair" ng-class="(chunk.isSelected) ? 'selected' : ''" ng-repeat="chunk in chunks" ng-click="selectChunk(chunk);">
+            <div class="chunk left">
+                {{chunk.left}}
+            </div>
+            <div class="chunk right">
+              {{chunk.right}}
+            </div>
+            <div class="clear"></div>
+          </div>
 
+          
+      </div>
     </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
   </body>
 </html>
 
