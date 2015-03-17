@@ -17,6 +17,8 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/css/select2.min.css" rel="stylesheet" />
+<script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0-rc.2/js/select2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
@@ -59,6 +61,7 @@ overflow-y: scroll;
       cursor: pointer;
       border: 1px solid green;
     }
+
 
     div.chunkPair.selected div.chunk {
       background: lightgreen;
@@ -111,7 +114,7 @@ overflow-y: scroll;
       <div class="starter-template" ng-controller="chunkController">
         <h4>Chunks of text</h4>
         <div class="text">
-          <div class="chunkPair" ng-class="(chunk.isSelected) ? 'selected' : ''" ng-repeat="chunk in chunks" ng-click="selectChunk(chunk);">
+          <div class="chunkPair" ng-class="(chunk.isSelected) ? 'selected' : '' + ' ' + (chunk.isProcessed) ? 'processed' : ''" ng-repeat="chunk in chunks" ng-click="selectChunk(chunk);">
             <div class="chunk left">
                 {{chunk.left}}
             </div>
@@ -123,6 +126,19 @@ overflow-y: scroll;
 
           
       </div>
+
+ 
+<select class="js-example-basic-single">
+  <option value="AL">Alabama</option>
+    ...
+  <option value="WY">Wyoming</option>
+</select>
+  <script>
+      $(document).ready(function() {
+  $(".js-example-basic-single").select2();
+});
+      </script>
+
     </div><!-- /.container -->
 
 
